@@ -3,12 +3,12 @@ echo $dir
 echo "${basedir}"
 path=$1
 
-if [ "$OSTYPE" == "linux-gnu" ]; then
-        COLOR_FLAG=\\e
-        ECHO_FLAG=-en
-elif [ "$OSTYPE" == "darwin"* ]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
         COLOR_FLAG=\\x1B
         ECHO_FLAG=
+else
+        COLOR_FLAG=\\e
+        ECHO_FLAG=-ne
 fi
 clear
 echo ${ECHO_FLAG} "${COLOR_FLAG}[38;5;220m"
