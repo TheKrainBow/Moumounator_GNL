@@ -181,3 +181,10 @@ fi
 ./a.out
 rm a.out
 echo "No error found" >> ERROR_FEEDBACK
+echo ${ECHO_FLAG} "${COLOR_FLAG}[38;5;220m"
+echo
+cat cat/error.txt
+echo
+echo ${ECHO_FLAG} "${COLOR_FLAG}[0;1m"
+echo ${ECHO_FLAG} "         Thanks for using Moumounator (Meow)"
+rm -rf *.a a.out output_printf.txt output_user.txt
