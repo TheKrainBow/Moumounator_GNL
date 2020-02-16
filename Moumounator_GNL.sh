@@ -10,10 +10,15 @@ elif [ "$OSTYPE" == "darwin"* ]; then
         COLOR_FLAG=\\x1B
         ECHO_FLAG=
 fi
+clear
+echo ${ECHO_FLAG} "${COLOR_FLAG}[38;5;220m"
+echo "${COLOR_FLAG}[38;5;220m"
+cat cat/cat.txt
 for i in {10..21}
 do
   rm -f tested_files/test_n${i}.txt
 done
+echo
 echo
 echo ${ECHO_FLAG} "\t" | tr -d '\n' ; for i in {16..22} {21..16} {15..22} {21..16} ; do echo ${ECHO_FLAG} "${COLOR_FLAG}[38;5;${i}m₪${COLOR_FLAG}[0m" | tr -d '\n'; done ; echo
 echo ${ECHO_FLAG} "\t" | tr -d '\n'; for i in {16..22} {21..21} ; do echo ${ECHO_FLAG} "${COLOR_FLAG}[38;5;${i}m₪${COLOR_FLAG}[0m" | tr -d '\n'; done ; echo ${ECHO_FLAG} "Moumounator" | tr -d '\n';
