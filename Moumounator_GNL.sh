@@ -41,8 +41,8 @@ elif [ $# = 1 ]
 then
   printf '%s\n\n' "$(tail -n +2 main_all.c)" > main_all.c
   printf '%s\n\n' "$(tail -n +2 main_stdin.c)" > main_stdin.c
-  { echo "#include \""$1"/get_next_line.h\""; cat main_all.c; } >main_all.new
-  { echo "#include \""$1"/get_next_line.h\""; cat main_stdin.c; } >main_stdin.new
+  { echo "#include \""$1"get_next_line.h\""; cat main_all.c; } >main_all.new
+  { echo "#include \""$1"get_next_line.h\""; cat main_stdin.c; } >main_stdin.new
   mv main_all.new main_all.c
   mv main_stdin.new main_stdin.c
   fileextension=.
@@ -52,8 +52,8 @@ then
   then
     printf '%s\n\n' "$(tail -n +2 main_all.c)" > main_all.c
     printf '%s\n\n' "$(tail -n +2 main_stdin.c)" > main_stdin.c
-    { echo "#include \""$1"/get_next_line_bonus.h\""; cat main_all.c; } >main_all.new
-    { echo "#include \""$1"/get_next_line_bonus.h\""; cat main_stdin.c; } >main_stdin.new
+    { echo "#include \""$1"get_next_line_bonus.h\""; cat main_all.c; } >main_all.new
+    { echo "#include \""$1"get_next_line_bonus.h\""; cat main_stdin.c; } >main_stdin.new
     mv main_all.new main_all.c
     mv main_stdin.new main_stdin.c
     fileextension=_bonus.
@@ -101,11 +101,10 @@ do
     gcc -w -fsanitize=address -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
     if [ $? = 1 ]
     then
-      echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
-      echo "\t      |ERROR COMPILE|"
-      echo "\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------${COLOR_FLAG}[0m"
+      echo ${ECHO_FLAG} "${COLOR_FLAG}[1m${COLOR_FLAG}[31m"
+      echo ${ECHO_FLAG} "\t      |ERROR COMPILE|${COLOR_FLAG}[0m"
       echo
-      echo "Did you do anything wrong?"
+      echo ${ECHO_FLAG} "Did you do anything wrong?"
     fi
     ./a.out tested_files/test_n${i}.txt
   done
@@ -118,11 +117,9 @@ do
   gcc -w -fsanitize=address -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
   if [ $? = 1 ]
   then
-    echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
-    echo "\t      |ERROR COMPILE|"
-    echo "\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------${COLOR_FLAG}[0m"
+    echo ${ECHO_FLAG} "\t      |ERROR COMPILE|"
     echo
-    echo "Did you do anything wrong?"
+    echo ${ECHO_FLAG} "Did you do anything wrong?"
   fi
   ./a.out cat/cat.txt
 done
@@ -134,11 +131,9 @@ do
   gcc -w -fsanitize=address -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
   if [ $? = 1 ]
   then
-    echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
-    echo "\t      |ERROR COMPILE|"
-    echo "\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------${COLOR_FLAG}[0m"
+    echo ${ECHO_FLAG} "\t      |ERROR COMPILE|"
     echo
-    echo "Did you do anything wrong?"
+    echo ${ECHO_FLAG} "Did you do anything wrong?"
   fi
   ./a.out tested_files/test_n20.txt
 done
@@ -150,11 +145,9 @@ do
   gcc -w -fsanitize=address -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
   if [ $? = 1 ]
   then
-    echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
-    echo "\t      |ERROR COMPILE|"
-    echo "\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------${COLOR_FLAG}[0m"
+    echo ${ECHO_FLAG} "\t      |ERROR COMPILE|"
     echo
-    echo "Did you do anything wrong?"
+    echo ${ECHO_FLAG} "Did you do anything wrong?"
   fi
   ./a.out tested_files/test_n21.txt
 done
@@ -163,11 +156,10 @@ echo "/devs/null is tested. (Buffer 8)"
 gcc -w -fsanitize=address -D BUFFER_SIZE=8 main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
 if [ $? = 1 ]
 then
-  echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
-  echo "\t      |ERROR COMPILE|"
-  echo "\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------${COLOR_FLAG}[0m"
+  echo ${ECHO_FLAG} "\t      |ERROR COMPILE|"
+  echo ${ECHO_FLAG} "\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------${COLOR_FLAG}[0m"
   echo
-  echo "Did you do anything wrong?"
+  echo ${ECHO_FLAG} "Did you do anything wrong?"
 fi
 ./a.out /devs/null
 
@@ -175,11 +167,9 @@ echo "Testing stdin with buffer_size 42"
 gcc -w -fsanitize=address -D BUFFER_SIZE=42 main_stdin.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
 if [ $? = 1 ]
 then
-  echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
-  echo "\t      |ERROR COMPILE|"
-  echo "\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------${COLOR_FLAG}[0m"
+  echo ${ECHO_FLAG} "\t      |ERROR COMPILE|"
   echo
-  echo "Did you do anything wrong?"
+  echo ${ECHO_FLAG} "Did you do anything wrong?"
 fi
 ./a.out
 rm a.out

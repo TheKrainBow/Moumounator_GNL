@@ -1,4 +1,4 @@
-#include "../../../Projet42/PROJECT:gnl/gnl2/get_next_line.h"
+#include "../../../Projet42/PROJECT:gnl/get_next_line/get_next_line.h"
 
 #include "gnl/gnl.h"
 #include <stdio.h>
@@ -37,13 +37,13 @@ int			main(int ac, char **av)
 		ret_gnl = gnl(fd, &line_gnl);
 		if (ret != ret_gnl || !compare_line(line, line_gnl))
 		{
-			printf(" KO\n");
+			printf(BRED " KO\n" BWHT);
 			free(line);
 			free(line_gnl);
 			return (0);
 		}
 	}
-	printf(" OK\n");
+	printf(BGRN " OK\n" BWHT);
 	free(line);
 	free(line_gnl);
 	return (1);

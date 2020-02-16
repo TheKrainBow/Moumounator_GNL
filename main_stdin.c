@@ -1,4 +1,4 @@
-#include "../../../Projet42/PROJECT:gnl/gnl2/get_next_line.h"
+#include "../../../Projet42/PROJECT:gnl/get_next_line/get_next_line.h"
 
 #include "gnl/gnl.h"
 #include <stdio.h>
