@@ -98,7 +98,7 @@ do
   for j in {1..5}
   do
     echo "BUFFER_SIZE = ${j}" | tr -d '\n'
-    gcc -w -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
+    gcc -w -fsanitize=address -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
     if [ $? = 1 ]
     then
       echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
@@ -115,7 +115,7 @@ echo "cat/cat.txt is tested."
 for j in {1..5}
 do
   echo "BUFFER_SIZE = ${j}" | tr -d '\n'
-  gcc -w -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
+  gcc -w -fsanitize=address -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
   if [ $? = 1 ]
   then
     echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
@@ -131,7 +131,7 @@ echo "[LONG LINE] test_n20.txt is tested."
 for j in {1..5}
 do
   echo "BUFFER_SIZE = ${j}" | tr -d '\n'
-  gcc -w -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
+  gcc -w -fsanitize=address -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
   if [ $? = 1 ]
   then
     echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
@@ -147,7 +147,7 @@ echo "[MANY LINE] test_n21.txt is tested."
 for j in {1..5}
 do
   echo "BUFFER_SIZE = ${j}" | tr -d '\n'
-  gcc -w -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
+  gcc -w -fsanitize=address -D BUFFER_SIZE=${j} main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
   if [ $? = 1 ]
   then
     echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
@@ -160,7 +160,7 @@ do
 done
 
 echo "/devs/null is tested. (Buffer 8)"
-gcc -w -D BUFFER_SIZE=8 main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
+gcc -w -fsanitize=address -D BUFFER_SIZE=8 main_all.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
 if [ $? = 1 ]
 then
   echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"
@@ -172,7 +172,7 @@ fi
 ./a.out /devs/null
 
 echo "Testing stdin with buffer_size 42"
-gcc -w -D BUFFER_SIZE=42 main_stdin.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
+gcc -w -fsanitize=address -D BUFFER_SIZE=42 main_stdin.c gnl/*.c $1/get_next_line${fileextension}c $1/get_next_line_utils${fileextension}c
 if [ $? = 1 ]
 then
   echo "\n\t      ${COLOR_FLAG}[1m${COLOR_FLAG}[31m---------------"

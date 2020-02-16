@@ -38,10 +38,14 @@ int			main(int ac, char **av)
 		if (ret != ret_gnl || !compare_line(line, line_gnl))
 		{
 			printf(" KO\n");
+			free(line);
+			free(line_gnl);
 			return (0);
 		}
 	}
 	printf(" OK\n");
+	free(line);
+	free(line_gnl);
 	return (1);
 }
 

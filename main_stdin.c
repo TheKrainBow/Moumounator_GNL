@@ -31,6 +31,7 @@ int main(void)
 	while (ret > 0)
 		ret = get_next_line(0, &line);
 	printf("get_next_line returned %d\n", ret);
+	free(line);
 	return (1);
 }
 
